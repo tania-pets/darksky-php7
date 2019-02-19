@@ -6,7 +6,6 @@
 		"name": "Tania Petsouka",
 		"email": "tania.pets@gmail.com"
 	}],
-	"minimum-stability": "dev",
 	"require": {
 		"php": ">=7.1.0",
 		"guzzlehttp/guzzle": "^6.3"
