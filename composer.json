@@ -1,0 +1,26 @@
+{
+	"name": "tania-pets/darksky",
+	"description": "Simple php 7 client for DarkSky API",
+	"license": "MIT",
+	"authors": [{
+		"name": "Tania Petsouka",
+		"email": "tania.pets@gmail.com"
+	}],
+	"require": {
+		"php": ">=7.1.0",
+		"guzzlehttp/guzzle": "^6.3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Taniapets\\DarkSky\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Taniapets\\DarkSky\\": "tests"
+		}
+	}
+}
