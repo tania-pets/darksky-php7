@@ -16,7 +16,7 @@ Final Class TimeMachineRequest extends AbstractRequest
 
     public function getPath()
     {
-        return $this->path . '/' . $this->lat . ',' . $this->long . ',' . $timestamp;
+        return $this->path . '/' . $this->lat . ',' . $this->long . ',' . $this->timestamp;
     }
 
 

@@ -24,7 +24,9 @@ Class AbstractRequest
 
     public function attachExclude(array $exclude)
     {
-        $this->queryAttach(['exclude' => implode(',', $exclude)]);
+        if (count($exclude)) {
+            $this->queryAttach(['exclude' => implode(',', $exclude)]);
+        }
         return $this;
     }
 

@@ -3,7 +3,7 @@
 namespace Taniapets\DarkSky\Client;
 
 use GuzzleHttp\Client;
-
+use Taniapets\DarkSky\DarkSkyException;
 
 Class GuzzleClient implements ClientInterface
 {
@@ -17,7 +17,16 @@ Class GuzzleClient implements ClientInterface
 
     public function get($request)
     {
-        return $this->client->request('GET', $request->getPath(), $request->getOptions());
+        try {
+            $response = $this->client->request('GET', $request->getPath(), $request->getOptions());
+            if ($response->getStatusCode() != 200) {
+                throw new DarkSkyException('Service unavailable responded with code: ' . $response->getStatusCode());
+            }
+            return $response->getBody()->getContents();
+        } catch (\Exception $e)
+        {
+            throw new DarkSkyException($e->getMessage());
+        }
     }
 
 

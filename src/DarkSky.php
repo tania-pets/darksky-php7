@@ -3,6 +3,7 @@ namespace Taniapets\DarkSky;
 
 use Taniapets\DarkSky\Client\ClientFactory;
 use Taniapets\DarkSky\Requests\{TimeMachineRequest,ForecastRequest};
+use \Taniapets\DarkSky\Responses\ForecastResponse;
 
 class DarkSky
 {
@@ -38,13 +39,10 @@ class DarkSky
                     ->attachKey($this->apiKey)
                     ->attachPrefs($this->prefs)
                     ->attachExclude($exclude);
-        try {
-            return $this->client->get($request);
-        }
-        catch (\Exception $e)
-        {
 
-        }
+        $jsonResponse = $this->client->get($request);
+        $data = json_decode($jsonResponse, true);
+        return new ForecastResponse($data);
     }
 
     public function forecast(float $lat, float $long, array $exclude = [], string $extend = null)
@@ -54,14 +52,10 @@ class DarkSky
                     ->attachPrefs($this->prefs)
                     ->attachExclude($exclude)
                     ->attachExtend($extend);
-
-        return  $this->client->get($request);
+        $jsonResponse = $this->client->get($request);
+        $data = json_decode($jsonResponse, true);
+        return new ForecastResponse($data);
     }
-
-
-
-
-
 
 
 
