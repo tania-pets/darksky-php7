@@ -1,10 +1,13 @@
 <?php
 namespace Taniapets\DarkSky\Responses;
 
-
+/**
+ * Class to provide the clients response in array format
+ * It provides functions to return data per frequency (daily, hourly, etc..)
+ */
 Class ForecastResponse
 {
-
+    /* array of the data that api responded*/
     private $data;
 
     public function __construct($data)
@@ -12,22 +15,34 @@ Class ForecastResponse
         $this->data = $data;
     }
 
-    public function currently()
+    /**
+     * Returns the currently datablock
+     */
+    public function currently() : array
     {
         return $this->getDataFor('currently');
     }
 
-    public function minutely()
+    /**
+     * Returns the minutely datablock
+     */
+    public function minutely(): array
     {
         return $this->getDataFor('minutely');
     }
 
-    public function hourly()
+    /**
+     * Returns the hourly datablock
+     */
+    public function hourly(): array
     {
         return $this->getDataFor('hourly');
     }
 
-    public function daily()
+    /**
+     * Returns the daily datablock
+     */
+    public function daily(): array
     {
         return $this->getDataFor('daily');
     }
@@ -42,14 +57,21 @@ Class ForecastResponse
         return $this->getDataFor('flags');
     }
 
-    public function getData()
+    /**
+     * Returns all responded data blocks
+     */
+    public function getData(): array
     {
         return $this->data;
     }
 
-    private function getDataFor($frequency)
+    /**
+     * Checks if requested data block exists and returns it
+     * @param string $frequency - the requested frequence
+     */
+    private function getDataFor($frequency): array
     {
-        return $this->data[$frequency] ?? null;
+        return $this->data[$frequency] ?? [];
     }
 
 

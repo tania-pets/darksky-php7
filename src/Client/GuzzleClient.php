@@ -4,10 +4,12 @@ namespace Taniapets\DarkSky\Client;
 
 use GuzzleHttp\Client;
 use Taniapets\DarkSky\DarkSkyException;
+use Taniapets\DarkSky\Requests\AbstractRequest;
+
 
 Class GuzzleClient implements ClientInterface
 {
-
+    /* GuzzleHttp\Client, the http client*/
     private $client;
 
     public function __construct($baseUrl)
@@ -15,7 +17,13 @@ Class GuzzleClient implements ClientInterface
         $this->client = new Client(['base_uri' => $baseUrl]);
     }
 
-    public function get($request)
+
+    /**
+     * Get Request
+     * @param AbstractRequest $request, the request to GET
+     * @return    string, the json of response's body contents
+     */
+    public function get(AbstractRequest $request) : string
     {
         try {
             $response = $this->client->request('GET', $request->getPath(), $request->getOptions());
@@ -30,7 +38,7 @@ Class GuzzleClient implements ClientInterface
     }
 
 
-    public function post($request)
+    public function post(AbstractRequest $request): string
     {
         throw new \Exception('Not implemented');
         //not implemented

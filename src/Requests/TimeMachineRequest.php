@@ -4,7 +4,7 @@ namespace Taniapets\DarkSky\Requests;
 
 Final Class TimeMachineRequest extends AbstractRequest
 {
-
+    /*string the timestamp for the day to get the weather for*/
     private $timestamp;
 
     public function __construct($lat, $long, $timestamp)
@@ -14,7 +14,7 @@ Final Class TimeMachineRequest extends AbstractRequest
         $this->timestamp = $timestamp;
     }
 
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path . '/' . $this->lat . ',' . $this->long . ',' . $this->timestamp;
     }
