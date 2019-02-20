@@ -4,7 +4,7 @@ namespace Taniapets\DarkSky\Client;
 
 use GuzzleHttp\Client;
 use Taniapets\DarkSky\DarkSkyException;
-use Taniapets\DarkSky\Requests\AbstractRequest;
+use Taniapets\DarkSky\Requests\WeatherRequest;
 use GuzzleHttp\Promise;
 
 Class GuzzleClient implements ClientInterface
@@ -20,10 +20,10 @@ Class GuzzleClient implements ClientInterface
 
     /**
      * Get Request
-     * @param AbstractRequest $request, the request to GET
+     * @param WeatherRequest $request, the request to GET
      * @return    string, the json of response's body contents
      */
-    public function get(AbstractRequest $request) : string
+    public function get(WeatherRequest $request) : string
     {
         try {
             $response = $this->client->request('GET', $request->getPath(), $request->getOptions());
@@ -40,7 +40,7 @@ Class GuzzleClient implements ClientInterface
 
     /**
      * Executes get requests concurrently, http://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
-     * @param array $requests, array of AbstractRequest
+     * @param array $requests, array of WeatherRequest
      * @return    array
      */
     public function getConcurrent(array $requests): array
@@ -60,7 +60,7 @@ Class GuzzleClient implements ClientInterface
     }
 
 
-    public function post(AbstractRequest $request): string
+    public function post(WeatherRequest $request): string
     {
         throw new \Exception('Not implemented');
         //not implemented

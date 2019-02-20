@@ -2,7 +2,7 @@
 namespace Taniapets\DarkSky\Requests;
 
 
-Final Class TimeMachineRequest extends AbstractRequest
+Final Class TimeMachineRequest extends WeatherRequest
 {
     /*string the timestamp for the day to get the weather for*/
     private $timestamp;

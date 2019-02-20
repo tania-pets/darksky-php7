@@ -2,9 +2,9 @@
 namespace Taniapets\DarkSky\Requests;
 
 /**
- * Abstarct Request Class for building request objects to be provided to Http Client
+ * WeatherRequest Parent Class for building request objects to be provided to Http Client
  */
-Class AbstractRequest
+Class WeatherRequest
 {
 
     /*float, the latitude*/
@@ -17,10 +17,16 @@ Class AbstractRequest
     protected $path = 'forecast';
 
 
+    public function __construct($lat, $long)
+    {
+        $this->lat = $lat;
+        $this->long = $long;
+    }
+
     /**
      * Attaches the api key to request path
      */
-    public function attachKey($apiKey): AbstractRequest
+    public function attachKey($apiKey): WeatherRequest
     {
         $this->path .= '/' . $apiKey;
         return $this;
@@ -29,7 +35,7 @@ Class AbstractRequest
     /**
      * Attaches the preferences (unit, lang) to the request query
      */
-    public function attachPrefs($prefs): AbstractRequest
+    public function attachPrefs($prefs): WeatherRequest
     {
         $this->queryAttach($prefs);
         return $this;
@@ -38,7 +44,7 @@ Class AbstractRequest
     /**
      * Attaches the excluded blocks to the request query
      */
-    public function attachExclude(array $exclude): AbstractRequest
+    public function attachExclude(array $exclude): WeatherRequest
     {
         if (count($exclude)) {
             $this->queryAttach(['exclude' => implode(',', $exclude)]);

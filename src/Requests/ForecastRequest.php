@@ -2,16 +2,8 @@
 namespace Taniapets\DarkSky\Requests;
 
 
-Final Class ForecastRequest extends AbstractRequest
+Final Class ForecastRequest extends WeatherRequest
 {
-
-    public function __construct($lat, $long)
-    {
-        $this->lat = $lat;
-        $this->long = $long;
-    }
-
-
     /**
      * Gets the path of the $request
      * @return    string
