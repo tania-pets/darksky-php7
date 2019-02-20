@@ -1,6 +1,6 @@
 <?php
 
-namespace Darksky;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Taniapets\DarkSky\DarkSky;
