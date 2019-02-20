@@ -31,12 +31,13 @@ $forecast->flags(); //get flags
 $forecast->getData(); //get all datablocks
 ```
 ### Timemachine request
+ Executes concurrent requests for multimple given timestamps
 ```php
-$timeMachine = $darksKy->timeMachine(40.6211912,22.9285177, '1549792109', ['currently']);
-$timeMachine->daily();
+$timeMachine = $darksKy->timeMachine(40.6211912,22.9285177, ['1549792109','1549292798'], ['currently']);
+$timeMachine['1549792109']->daily();
 ...
 ```
 
 ##### Todo
 - Add tests
-- Add concurrent request option for timemachine
+- Add laravel wrapper

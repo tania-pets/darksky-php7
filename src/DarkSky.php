@@ -59,20 +59,25 @@ class DarkSky
      * Gets results for time machine request for given point and timestamp
      * @param float $lat, the point's latitude
      * @param float $long, the point's longtitude
-     * @param string $timestamp, the timestamp for which we ask historical weather
+     * @param array $timestamps, array for the the timestamps for which we ask historical weather
      * @param array $exclude, data blocks to be excluded
+     * @return array of ForecastResponse
      * @copyright
      */
-    public function timeMachine(float $lat, float $long, string $timestamp, array $exclude = []): ForecastResponse
+    public function timeMachine(float $lat, float $long, array $timestamps, array $exclude = []): array
     {
-        $request = (new TimeMachineRequest($lat, $long, $timestamp))
-                    ->attachKey($this->apiKey)
-                    ->attachPrefs($this->prefs)
-                    ->attachExclude($exclude);
-
-        $jsonResponse = $this->client->get($request);
-        $data = json_decode($jsonResponse, true);
-        return new ForecastResponse($data);
+        foreach ($timestamps as $timestamp) {
+            $requests[$timestamp] = (new TimeMachineRequest($lat, $long, $timestamp))
+                        ->attachKey($this->apiKey)
+                        ->attachPrefs($this->prefs)
+                        ->attachExclude($exclude);
+        }
+        $httpResponses = $this->client->getConcurrent($requests);
+        foreach ($httpResponses as $timestamp => $response) {
+            $responseDataArray = json_decode($response, true);
+            $timeMachineResponses[$timestamp] = new ForecastResponse($responseDataArray);
+        }
+        return $timeMachineResponses;
     }
 
     /**

@@ -11,6 +11,8 @@ interface ClientInterface
 {
     public function get(AbstractRequest $request) : string;
 
+    public function getConcurrent(array $requests) : array;
+
     public function post(AbstractRequest $request) : string;
 
 }
