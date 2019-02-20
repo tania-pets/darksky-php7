@@ -9,9 +9,6 @@ use Taniapets\DarkSky\Requests\{TimeMachineRequest,ForecastRequest};
 Class DarkSkyTest extends TestCase
 {
 
-    const LAT = 40.6211912;
-    CONST LONG = 22.9285177;
-
     public function testNewDarkSky()
     {
         $darkSky = new DarkSky('testKey');
