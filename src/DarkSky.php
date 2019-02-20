@@ -90,7 +90,7 @@ class DarkSky
      */
     public function forecast(float $lat, float $long, array $exclude = [], string $extend = null): ForecastResponse
     {
-        $request = (new ForecastRequest($lat, $long, $timestamp))
+        $request = (new ForecastRequest($lat, $long))
                     ->attachKey($this->apiKey)
                     ->attachPrefs($this->prefs)
                     ->attachExclude($exclude)
