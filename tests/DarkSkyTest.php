@@ -9,6 +9,9 @@ use Taniapets\DarkSky\Requests\{TimeMachineRequest,ForecastRequest};
 Class DarkSkyTest extends TestCase
 {
 
+    /**
+     * @covers DarkSky::__construct
+     */
     public function testNewDarkSky()
     {
         $darkSky = new DarkSky('testKey');
@@ -18,6 +21,10 @@ Class DarkSkyTest extends TestCase
         $this->assertInstanceOf(DarkSky::class, $darkSky);
     }
 
+
+    /**
+     * @covers   DarkSky::setUnits
+     */
     public function testSetUnits()
     {
         //test without having set units int the constructor
@@ -46,7 +53,9 @@ Class DarkSkyTest extends TestCase
 
     }
 
-
+    /**
+     * @covers DarkSky::setLang
+     */
     public function testSetLang()
     {
         //test without having set lang int the constructor
