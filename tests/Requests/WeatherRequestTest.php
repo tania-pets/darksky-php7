@@ -14,7 +14,7 @@ Class WeatherRequestTest extends TestCase
 
     public function testAttachPrefs()
     {
-        $request = new WeatherRequest(self::LAT, self::LONG);
+        $request = new WeatherRequest(self::API_KEY, self::LAT, self::LONG);
         $request->attachPrefs(['units' => 'si', 'lang' => 'el']);
         $requestQuery = $request->getOptions()['query'];
         $this->assertEquals($requestQuery['units'], 'si');
@@ -23,7 +23,7 @@ Class WeatherRequestTest extends TestCase
 
     public function testAttachExclude()
     {
-        $request = new WeatherRequest(self::LAT, self::LONG);
+        $request = new WeatherRequest(self::API_KEY, self::LAT, self::LONG);
         $request->attachExclude(['currently', 'daily']);
         $requestQuery = $request->getOptions()['query'];
         $this->assertEquals($requestQuery['exclude'], 'currently,daily');

@@ -13,23 +13,17 @@ Class WeatherRequest
     protected $long;
     /*array the request's options*/
     protected $options = ['query' => []];
+    /*string the api key*/
+    protected $apiKey;
 
     protected $path = 'forecast';
 
 
-    public function __construct($lat, $long)
+    public function __construct($apiKey, $lat, $long)
     {
         $this->lat = $lat;
         $this->long = $long;
-    }
-
-    /**
-     * Attaches the api key to request path
-     */
-    public function attachKey($apiKey): WeatherRequest
-    {
-        $this->path .= '/' . $apiKey;
-        return $this;
+        $this->apiKey = $apiKey;
     }
 
     /**

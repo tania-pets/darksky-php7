@@ -10,7 +10,7 @@ Final Class ForecastRequest extends WeatherRequest
      */
     public function getPath(): string
     {
-        return $this->path . '/' . $this->lat . ',' . $this->long;
+        return $this->path . '/' . $this->apiKey . '/' .  $this->lat . ',' . $this->long;
     }
 
 

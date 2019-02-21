@@ -67,8 +67,7 @@ class DarkSky
     public function timeMachine(float $lat, float $long, array $timestamps, array $exclude = []): array
     {
         foreach ($timestamps as $timestamp) {
-            $requests[$timestamp] = (new TimeMachineRequest($lat, $long, $timestamp))
-                        ->attachKey($this->apiKey)
+            $requests[$timestamp] = (new TimeMachineRequest($this->apiKey, $lat, $long, $timestamp))
                         ->attachPrefs($this->prefs)
                         ->attachExclude($exclude);
         }
@@ -90,8 +89,7 @@ class DarkSky
      */
     public function forecast(float $lat, float $long, array $exclude = [], string $extend = null): ForecastResponse
     {
-        $request = (new ForecastRequest($lat, $long))
-                    ->attachKey($this->apiKey)
+        $request = (new ForecastRequest($this->apiKey, $lat, $long))
                     ->attachPrefs($this->prefs)
                     ->attachExclude($exclude)
                     ->attachExtend($extend);

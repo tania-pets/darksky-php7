@@ -14,8 +14,8 @@ Class ForecastRequestTest extends TestCase
 
     public function testGetPath()
     {
-        $request = new ForecastRequest(self::LAT, self::LONG);
-        $this->assertEquals($request->getPath(), self::REQUEST_PATH . self::LAT . ',' . self::LONG);
+        $request = new ForecastRequest(self::API_KEY, self::LAT, self::LONG);
+        $this->assertEquals($request->getPath(), self::REQUEST_PATH . self::API_KEY . '/' . self::LAT . ',' . self::LONG);
     }
 
 
